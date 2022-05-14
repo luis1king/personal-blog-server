@@ -20,8 +20,8 @@ app.use( express.json() );
 
 // Rutas
 app.use('/api/auth', require('./routes/auth') );
-// TODO: CRUD: Eventos
-
+app.use('/api', require('./routes/users') );
+app.use('/api/menu', require('./routes/menu') );
 app.use('/api/blog', require('./routes/events') );
 
 

@@ -6,7 +6,6 @@ const { generarJWT } = require('../helpers/jwt');
 const register = async(req, res = response ) => {
 
     const { email, password } = req.body;
-    
 
     try {
         let existingUser = await User.findOne({ email });
@@ -14,7 +13,7 @@ const register = async(req, res = response ) => {
         if ( existingUser) {
             return res.status(400).json({
                 ok: false,
-                msg: 'El user ya existe'
+                msg: 'El usuario ya existe'
             });
         }
 
@@ -54,13 +53,20 @@ const login = async(req, res = response ) => {
     const { email, password } = req.body;
 
     try {
-        
+        // Busca en la base de datos  un usuario con ese email
         const user = await User.findOne({ email });
-
+        
         if ( !user ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'El user no existe con ese email'
+                msg: 'El usuario no existe con ese email'
+            });
+        }
+
+        if ( !user.active ) {
+            return res.status(200).json({
+                ok: false,
+                msg: 'El usuario no esta activado'
             });
         }
 
@@ -70,22 +76,20 @@ const login = async(req, res = response ) => {
         if ( !validPassword ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Password incorrecto'
+                msg: 'La contraseña es incorrecta'
             });
         }
 
         //Si las contraseñas hacen match, generamos JSON web token
         // Generar JWT
-        
         const token = await generarJWT( user.id, user.firstName, user.lastName );
         res.json({
             ok: true,
             uid: user.id,
             user: `${user.firstName} ${user.lastName}`,
             token
+            
         })
-
-
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -93,7 +97,6 @@ const login = async(req, res = response ) => {
             msg: 'Por favor hable con el administrador'
         });
     }
-
 }
 
 
