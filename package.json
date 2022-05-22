@@ -22,8 +22,5 @@
     "mongoose": "^5.9.18",
     "mongoose-paginate": "^5.0.3",
     "multer": "^1.4.4"
-  },
-  "devDependencies": {
-
   }
 }
