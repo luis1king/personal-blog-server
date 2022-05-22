@@ -82,7 +82,7 @@ const login = async(req, res = response ) => {
 
         //Si las contraseñas hacen match, generamos JSON web token
         // Generar JWT
-        const token = await generarJWT( user.id, user.firstName, user.lastName );
+        const token = await generarJWT( user.id, user.firstName, user.lastName, user.role );
         res.json({
             ok: true,
             uid: user.id,

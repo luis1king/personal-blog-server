@@ -22,7 +22,7 @@ app.use( express.json() );
 app.use('/api/auth', require('./routes/auth') );
 app.use('/api', require('./routes/users') );
 app.use('/api/menu', require('./routes/menu') );
-app.use('/api/blog', require('./routes/events') );
+app.use('/api/post', require('./routes/post') );
 
 
 

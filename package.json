@@ -1,5 +1,5 @@
 {
-  "name": "10-calendar-backend",
+  "name": "personal-blog",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,10 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.2",
     "mongoose": "^5.9.18",
+    "mongoose-paginate": "^5.0.3",
     "multer": "^1.4.4"
+  },
+  "devDependencies": {
+
   }
 }
