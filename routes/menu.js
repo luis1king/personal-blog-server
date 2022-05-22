@@ -1,13 +1,13 @@
 const express = require("express");
-const MenuController = require("../controllers/menu");
+const {getMenus, addMenu, updateMenu, activateMenu, deleteMenu} = require("../controllers/menu");
 const { validarJWT } = require("../middlewares/validar-jwt");
 
 const router = express.Router();
 
-router.get("/get-menus", MenuController.getMenus);
-router.post("/add-menu",validarJWT, MenuController.addMenu);
-router.put("/update-menu/:id",validarJWT, MenuController.updateMenu);
-router.put("/activate-menu/:id",validarJWT,MenuController.activateMenu);
-router.delete("/delete-menu/:id",validarJWT, MenuController.deleteMenu);
+router.get("/get-menus", getMenus);
+router.post("/add-menu",validarJWT, addMenu);
+router.put("/update-menu/:id",validarJWT, updateMenu);
+router.put("/activate-menu/:id",validarJWT,activateMenu);
+router.delete("/delete-menu/:id",validarJWT, deleteMenu);
 
 module.exports = router;
